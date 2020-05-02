@@ -96,14 +96,22 @@
 	\begin{multicols}{3}
 		\lipsum[16-17]
 	\end{multicols}
-	\begin{lstlisting}[language=Python,caption=Example Python \url{https://www.overleaf.com/learn/latex/code_listing}]]
+	\begin{lstlisting}[language=Python,caption={Exemple Python\protect\footnotemark\relax}]
 		list_of_lists = [ [1, 2, 3], [4, 5, 6], [7, 8, 9]]
 		for list in list_of_lists:
 		for x in list:
 		print(x)
 	\end{lstlisting}
+	\footnotetext{\url{https://www.overleaf.com/learn/latex/code_listing}}
 	\begin{multicols}{3}
 		\lipsum[17-18]
 	\end{multicols}
+\pagebreak
+
+{
+	\let\footnotemark\relax
+	\lstlistoflistings
+}
+	\listoffigures
 	
 \end{document}
