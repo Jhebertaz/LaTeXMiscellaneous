@@ -1,0 +1,109 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Auteur	: Julien Hébert-Doutreloux
+%% Date		: 2020/05/01
+%% Mail		: 
+%% Git		: https://github.com/Jhebertaz/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Réference
+%% https://en.wikibooks.org/wiki/LaTeX
+%% https://fr.wikibooks.org/wiki/LaTeX
+%% https://www.overleaf.com/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[french, babel]{article}
+%% Pour le français
+\usepackage [french]{babel}
+\usepackage [utf8]{inputenc}
+\usepackage [T1] {fontenc}
+\usepackage{xspace}
+%% Marge
+\usepackage{layout}
+%% Mise en page
+\usepackage[a4paper]{geometry}
+%% American Mathematical Society Package 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%% Divers 
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{framed}
+\usepackage{lipsum}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{hyperref}
+%% Information
+\title{Un gabaraits \LaTeX}
+\author{Julien H\'ebert-Doutreloux\\%
+	Commité de l'Axiomatique%
+	\thanks{D\'epartement de Math\'ematique}, Université de Montréal}
+\date{\today}
+\begin{document}
+	%% Affiche la page présentation
+	\maketitle
+	%% Table des matière
+	\tableofcontents
+	%% Espace vertical
+	\vspace{1cm}
+\section[Ce qui apparait dans la table des mati\`ere]{Une section en une colonne}
+	%% Du blabla
+	\lipsum[3-5]
+	%% Commande pour passer en deux colonnes
+\section[D\'ebut d'article]{Une section en deux colonnes}
+	\begin{multicols*}{2}
+		\lipsum[5-7]
+			\[\frac{te^{tx}}{e^t-1}=B_0(x)+B_1(x)t+B_3(x)\frac{t^3}{3!}+\dots\]
+			\captionof{figure}{Le polyn\^ome de Bernoulli}
+		\lipsum[7-7.5]
+		%% Utilisation spécial pour l'insertion d'image dans un environnement en deux colonne
+		\begin{center}
+			\includegraphics[width=.3\textwidth]{WordCloudLaTeX}
+			\caption{Un nuage de mot en lien avec \LaTeXe}
+		\end{center}
+	\lipsum[8-8.]
+	\end{multicols*}
+\section[Suite avec des tableaux]{Une complexit\'ee matricielle}
+	\lipsum[8-9]
+	%% La configuration ht pour placer la figure à la sa place (se qui est avant reste avant)
+	\begin{figure}[ht]
+	\centering
+	$
+	\left(
+	\begin{array}{cccc}
+		1.93409 + i & -2.05004+ i &
+		8.23347 + i & 2.98992 + i \\
+		-1.59947+ i & -5.25552+ i &
+		1.44115 + i & -6.03481+ i \\
+		-6.95121+ i & -8.37939+ i &
+		-4.32323+ i & 7.91667 + i \\
+		-5.70742+ i & -0.322354+i &
+		-3.23434+ i & 3.29176 + i \\
+	\end{array}
+	\right)
+	$
+	\caption{Un sous-titre pour une matrice aléatoire complexe}
+	\end{figure}
+\subsection[Sous-section]{Comment coder}
+	\lipsum[9-10]
+	%% Pour inserer un code
+	\begin{lstlisting}[language=Mathematica, caption=Example Mathematica]
+	(*Pour importer le texte de la page web*)
+	text = Import["https://en.wikipedia.org/wiki/LaTeX"];
+	(*Exporte le nuage de mot sous l'extension .png*)
+	Export["WordCloudLaTeX.png", WordCloud[text]]
+	\end{lstlisting}
+	\begin{multicols}{3}
+		\lipsum[10-11]
+	\end{multicols}
+	\begin{lstlisting}[language=Python,caption=Example Python \url{https://www.overleaf.com/learn/latex/code_listing}]]
+		list_of_lists = [ [1, 2, 3], [4, 5, 6], [7, 8, 9]]
+		for list in list_of_lists:
+		for x in list:
+		print(x)
+	\end{lstlisting}
+	\begin{multicols}{3}
+		\lipsum[11-12]
+	\end{multicols}
+	
+\end{document}
