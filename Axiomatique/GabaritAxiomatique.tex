@@ -52,19 +52,19 @@
 	%% Commande pour passer en deux colonnes
 \section[D\'ebut d'article]{Une section en deux colonnes}
 	\begin{multicols*}{2}
-		\lipsum[5-7]
+		\lipsum[5-6]
 			\[\frac{te^{tx}}{e^t-1}=B_0(x)+B_1(x)t+B_3(x)\frac{t^3}{3!}+\dots\]
 			\captionof{figure}{Le polyn\^ome de Bernoulli}
-		\lipsum[7-7.5]
+		\lipsum[7-8]
 		%% Utilisation spécial pour l'insertion d'image dans un environnement en deux colonne
 		\begin{center}
 			\includegraphics[width=.3\textwidth]{WordCloudLaTeX}
 			\caption{Un nuage de mot en lien avec \LaTeXe}
 		\end{center}
-	\lipsum[8-8.]
+	\lipsum[8-14]
 	\end{multicols*}
 \section[Suite avec des tableaux]{Une complexit\'ee matricielle}
-	\lipsum[8-9]
+	\lipsum[14-15]
 	%% La configuration ht pour placer la figure à la sa place (se qui est avant reste avant)
 	\begin{figure}[ht]
 	\centering
@@ -85,7 +85,7 @@
 	\caption{Un sous-titre pour une matrice aléatoire complexe}
 	\end{figure}
 \subsection[Sous-section]{Comment coder}
-	\lipsum[9-10]
+	\lipsum[15-16]
 	%% Pour inserer un code
 	\begin{lstlisting}[language=Mathematica, caption=Example Mathematica]
 	(*Pour importer le texte de la page web*)
@@ -94,7 +94,7 @@
 	Export["WordCloudLaTeX.png", WordCloud[text]]
 	\end{lstlisting}
 	\begin{multicols}{3}
-		\lipsum[10-11]
+		\lipsum[16-17]
 	\end{multicols}
 	\begin{lstlisting}[language=Python,caption=Example Python \url{https://www.overleaf.com/learn/latex/code_listing}]]
 		list_of_lists = [ [1, 2, 3], [4, 5, 6], [7, 8, 9]]
@@ -103,7 +103,7 @@
 		print(x)
 	\end{lstlisting}
 	\begin{multicols}{3}
-		\lipsum[11-12]
+		\lipsum[17-18]
 	\end{multicols}
 	
 \end{document}
