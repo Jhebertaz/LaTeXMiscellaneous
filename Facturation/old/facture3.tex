@@ -1,0 +1,115 @@
+%%Tenplate facture
+\documentclass{article}
+\usepackage[margin=20mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{datatool}
+\usepackage{fp}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{etoolbox}
+\usepackage{latexsym}
+\usepackage{ifthen}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{pgf}
+\usepackage{xcolor,color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+%%
+\renewcommand{\arraystretch}{1.1}
+\makeatletter
+\newcommand{\thickhline}{%
+	\noalign {\ifnum 0=`}\fi \hrule height 1pt
+	\futurelet \reserved@a \@xhline%
+	}
+\makeatother
+%%
+\newcommand{\tableur}{%
+	\begin{center}
+		\begin{tabular}{|l@{\hskip 0.4\textwidth}|r|}
+		\thickhline
+			\rowcolor{Gray}\multicolumn{1}{c}{\bf\uppercase{D\'esignation}} & \multicolumn{1}{c}{\bf\uppercase{Montant}}\\ \thickhline
+			\RowOne           & \FPifzero{\RowOOne}{} \else\FPeval{\result}{round(\RowOOne,2)}\result\fi \\
+			\RowTwo           & \FPifzero{\RowTTwo}{} \else\FPeval{\result}{round(\RowTTwo,2)}\result\fi \\
+			\RowThree         & \FPifzero{\RowTThree}{} \else\FPeval{\result}{round(\RowTThree,2)}\result\fi \\
+			\RowFour          & \FPifzero{\RowFFour}{} \else\FPeval{\result}{round(\RowFFour,2)}\result\fi \\
+			\RowFive          & \FPifzero{\RowFFive}{} \else\FPeval{\result}{round(\RowFFive,2)}\result\fi \\
+			\RowSix           & \FPifzero{\RowSSix}{} \else\FPeval{\result}{round(\RowSSix,2)}\result\fi \\
+			\RowSeven         & \FPifzero{\RowSSeven}{} \else\FPeval{\result}{round(\RowSSeven,2)}\result\fi \\ \hline
+			\multicolumn{1}{r}{{}} & \multicolumn{1}{|r|}{\FPeval{\result}{round(\RowOOne+\RowTTwo+\RowTThree+\RowFFour+\RowFFive+\RowSSix+\RowSSeven,2)} \result}\\ \cline{2-1}%
+		\end{tabular}
+	\end{center}%
+}
+\newcommand{\tabw}[9]{%
+	\begin{tabular}{l@{\hskip 0.4\textwidth} l}
+		{\bf\LARGE George Lambert}              & \multicolumn{1}{c}{{\bf\Huge\color{gray} Facturation}} \\
+		\quad 4729, rue St-Bernard              & \multicolumn{1}{c}{\billnumber}                        \\
+		\quad T\'el\'ephone : (438)-234-1234    & \multicolumn{1}{c}{\billdate}                          \\
+		\quad Courriel : \texttt{abc@gmail.com} & {}                                                     \\[30pt]
+		{\bf\uppercase{À l'attention de} :}     & {\bf\uppercase{Objet} :}                               \\
+		\quad #1~#2                             & #3                                                     \\
+		\quad #4                                & #5                                                     \\
+		\quad #6                                & {\bf #7}                                               \\
+		\quad {\bf #8}                          & {\bf #9}\\[20pt]
+	\end{tabular}%
+}%
+\input{BillNum.txt}
+\DTLloaddb{database}{database.csv}
+% ---------------------------------------------------------------------------------
+\begin{document}
+	\thispagestyle{empty}
+	\begin{center}
+	\DTLforeach*[\DTLiseq{\billnumber}{\querry}]{database}{%
+		\billnumber=BillNumber,%
+		\firstname=FirstName,%
+		\surname=Surname,%
+		\addressOne=Address1,%
+		\cityOne=City1,%
+		\enterprise=Enterprise,%
+		\addressTwo=Address2,%
+		\cityTwo=City2,%
+		\object=Object,%
+		\billdate=Date,%
+		\RowOne=Row1,%
+		\RowTwo=Row2,%
+		\RowThree=Row3,%
+		\RowFour=Row4,%
+		\RowFive=Row5,%
+		\RowSix=Row6,%
+		\RowSeven=Row7,
+		\RowOOne=Row11,%
+		\RowTTwo=Row12,%
+		\RowTThree=Row13,%
+		\RowFFour=Row14,%
+		\RowFFive=Row15,%
+		\RowSSix=Row16,%
+		\RowSSeven=Row17}%
+	{%
+		\ifx&\enterprise&%
+		% #1 is empty
+		\tabw{\firstname}%
+		{\surname}%
+		{\object}%
+		{\addressTwo}%
+		{\addressOne}%
+		{\cityTwo}%
+		{\cityOne}%
+		{{}}%
+		{{}}%
+		\else
+		% #1 is nonempty
+		\tabw{\firstname}%
+		{\surname}%
+		{\object}%
+		{\enterprise}%
+		{\addressTwo}%
+		{\addressOne}%
+		{\cityTwo}%
+		{\cityOne}%
+		{{}}%
+		\fi
+		\tableur%
+	}
+\end{center}
+\end{document}
